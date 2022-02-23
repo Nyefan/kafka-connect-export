@@ -1,0 +1,16 @@
+{
+  "name": "notification-azure-sink-storage-connector",
+  "config": {
+    "connector.class": "io.confluent.connect.azure.blob.AzureBlobStorageSinkConnector",
+    "topics": "notification_events",
+    "rotate.interval.ms": 600000,
+    "azblob.account.name": "devradiusstorage",
+    "azblob.account.key": "",
+    "azblob.container.name": "kafka-connect-export/notification",
+    "az.compression.type": "gzip",
+    "partitioner.class": "TimeBasedPartitioner",
+    "partitioner.duration.ms": 3600000,
+    "path.format": "YYYY/MM/dd/HH",
+    "timezone": "UTC"
+  }
+}
