@@ -13,7 +13,7 @@ done
 
 echo -e "\n--\n+> Creating Data Connectors"
 curl -s \
-     -X POST \
+     -X PUT \
      -H "Content-Type: application/json" \
-     -d "$(cat connectors/notification-azure-sink-storage-connector.json)" \
-     http://localhost:8083/connectors
+     -d "$(cat connectors/"${CONNECTOR_NAME}.json")" \
+     http://localhost:8083/connectors/"${CONNECTOR_NAME}"/config

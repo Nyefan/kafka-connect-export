@@ -1,10 +1,10 @@
 {
-  "name": "notification-azure-sink-storage-connector",
+  "name": "analytics-azure-sink-storage-connector",
   "config": {
     "connector.class": "io.confluent.connect.azure.blob.AzureBlobStorageSinkConnector",
-    "topics": "notification_events",
+    "topics": "analytics_events",
     "locale": "en-US",
-    "confluent.topic.bootstrap.servers": "notification-common-kafka.dev.svc.cluster.local:9092",
+    "confluent.topic.bootstrap.servers": "analytics-common-kafka.dev.svc.cluster.local:9092",
     "confluent.topic.replication.factor": 1,
     "rotate.interval.ms": 600000,
     "flush.size": 10000,
@@ -16,7 +16,7 @@
     "partitioner.class": "io.confluent.connect.storage.partitioner.HourlyPartitioner",
     "partitioner.duration.ms": 3600000,
     "timestamp.extractor": "Record",
-    "path.format": "notification/YYYY/MM/dd/HH",
+    "path.format": "analytics/YYYY/MM/dd/HH",
     "timezone": "UTC"
   }
 }

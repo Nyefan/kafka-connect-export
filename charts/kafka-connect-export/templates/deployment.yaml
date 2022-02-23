@@ -34,15 +34,14 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
-            {{- .Values.env | toYaml | nindent 12 }}
-          livenessProbe:
-            httpGet:
-              path: /connectors
-              port: http
-          readinessProbe:
-            httpGet:
-              path: /connectors
-              port: http
+            {{ range $key, $value := .Values.env -}}
+            - name: {{ $key }}
+              value: {{ quote $value }}
+            {{ end }}
+            {{- range $key, $yaml := .Values.derivedEnv -}}
+            - name: {{ $key }}
+              {{- toYaml $yaml | nindent 14 }}
+            {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}

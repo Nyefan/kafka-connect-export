@@ -1,0 +1,22 @@
+{
+  "connector.class": "io.confluent.connect.azure.blob.AzureBlobStorageSinkConnector",
+  "topics": "app.logs.ticks.dedup",
+  "key.converter": "org.apache.kafka.connect.storage.StringConverter",
+  "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+  "value.converter.schemas.enable": "false",
+  "confluent.topic.bootstrap.servers": "kafka.dev.svc.cluster.local:9092",
+  "confluent.topic.replication.factor": 1,
+  "rotate.interval.ms": 10000,
+  "flush.size": 3,
+  "azblob.account.name": "devradiusstorage",
+  "azblob.account.key": "",
+  "azblob.container.name": "kafka-connect-export",
+  "format.class": "io.confluent.connect.azure.blob.format.json.JsonFormat",
+  "az.compression.type": "gzip",
+  "partitioner.class": "io.confluent.connect.storage.partitioner.HourlyPartitioner",
+  "partitioner.duration.ms": 10000,
+  "locale": "en-US",
+  "timestamp.extractor": "Record",
+  "path.format": "'ticks'/YYYY/MM/dd/HH",
+  "timezone": "UTC"
+}
