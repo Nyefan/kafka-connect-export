@@ -8,7 +8,7 @@ image:
   repository: jawbone.azurecr.io/kafka-connect-export
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: "0.1.14"
+  tag: "0.1.20"
 
 imagePullSecrets: []
 nameOverride: ""
