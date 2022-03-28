@@ -1,0 +1,20 @@
+{
+    "connector.class": "{{ required "storageConnector.connector_class must be set" .Values.storageConnector.connector_class }}",
+    "topics": "{{ required "storageConnector.topics must be set" .Values.storageConnector.topics }}",
+    "locale": "{{ required "storageConnector.locale must be set" .Values.storageConnector.locale }}",
+    "key.converter": "{{ required "storageConnector.key_converter must be set" .Values.storageConnector.key_converter }}",
+    "value.converter": "{{ required "storageConnector.value_converter must be set" .Values.storageConnector.value_converter }}",
+    "value.converter.schemas.enable": "{{ required "storageConnector.value_converter_schemas_enable must be set" .Values.storageConnector.value_converter_schemas_enable }}",
+    "confluent.topic.bootstrap.servers": "{{ required "storageConnector.confluent_topic_bootstrap_servers must be set" .Values.storageConnector.confluent_topic_bootstrap_servers }}",
+    "confluent.topic.replication.factor": "{{ required "storageConnector.confluent_topic_replication_factor must be set" .Values.storageConnector.confluent_topic_replication_factor }}",
+    "rotate.interval.ms": "{{ required "storageConnector.rotate_interval_ms must be set" .Values.storageConnector.rotate_interval_ms }}",
+    "flush.size": "{{ required "storageConnector.flush_size must be set" .Values.storageConnector.flush_size }}",
+    "azblob.account.name": "{{ required "storageConnector.azblob_account_name must be set" .Values.storageConnector.azblob_account_name }}",
+    "azblob.account.key": "{{ required "storageConnector.azblob_account_key must be set" .Values.storageConnector.azblob_account_key }}",
+    "azblob.container.name": "{{ required "storageConnector.azblob_container_name must be set" .Values.storageConnector.azblob_container_name }}",
+    "format.class": "{{ required "storageConnector.format_class must be set" .Values.storageConnector.format_class }}",
+    "az.compression.type": "{{ required "storageConnector.az_compression_type must be set" .Values.storageConnector.az_compression_type }}",
+    "partitioner.class": "{{ required "storageConnector.partitioner_class must be set" .Values.storageConnector.partitioner_class }}",
+    "timezone": "{{ required "storageConnector.timezone must be set" .Values.storageConnector.timezone }}",
+    {{- .Values.storageConnector.extraConfig | nindent 4 -}}
+}

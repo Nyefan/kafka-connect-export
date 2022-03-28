@@ -44,6 +44,17 @@ spec:
             {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+            - name: config
+              mountPath: "/home/appuser/connectors"
+              readOnly: true
+      volumes:
+        - name: config
+          configMap:
+            name: {{ include "kafka-connect-export.fullname" . }}
+            items:
+              - key: "storageconnector.json"
+                path: "{{ .Values.env.CONNECTOR_NAME }}.json"
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

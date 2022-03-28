@@ -18,8 +18,32 @@ env:
   CONNECT_CONFIG_STORAGE_REPLICATION_FACTOR: "-1"
   CONNECT_OFFSET_STORAGE_REPLICATION_FACTOR: "-1"
   CONNECT_STATUS_STORAGE_REPLICATION_FACTOR: "-1"
-  CONNECT_KEY_CONVERTER: "org.apache.kafka.connect.storage.StringConverter"
-  CONNECT_VALUE_CONVERTER: "org.apache.kafka.connect.json.JsonConverter"
+  CONNECT_BOOTSTRAP_SERVERS: "http://kafka:9092"
+  CONNECTOR_NAME: ""
+  CONNECT_GROUP_ID: ""
+  CONNECT_CONFIG_STORAGE_TOPIC: ""
+  CONNECT_OFFSET_STORAGE_TOPIC: ""
+  CONNECT_STATUS_STORAGE_TOPIC: ""
+
+storageConnector:
+  connector_class: "io.confluent.connect.azure.blob.AzureBlobStorageSinkConnector"
+  topics: ""
+  locale: "en-US"
+  key_converter: "org.apache.kafka.connect.storage.StringConverter"
+  value_converter: "org.apache.kafka.connect.json.JsonConverter"
+  value_converter_schemas_enable: "false"
+  confluent_topic_bootstrap_servers: "http://kafka:9092"
+  confluent_topic_replication_factor: 1
+  rotate_interval_ms: 600000
+  flush_size: 10000
+  azblob_account_name: ""
+  azblob_account_key: ""
+  azblob_container_name: "kafka-connect-export"
+  format_class: "io.confluent.connect.azure.blob.format.json.JsonFormat"
+  az_compression_type: "none"
+  partitioner_class: "io.confluent.connect.storage.partitioner.TimeBasedPartitioner"
+  timezone: "UTC"
+  extraConfig: |-
 
 derivedEnv:
   CONNECT_REST_ADVERTISED_HOST_NAME:

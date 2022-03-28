@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "kafka-connect-export.fullname" . }}
+  labels:
+    {{- include "kafka-connect-export.labels" . | nindent 4 }}
+  {{- with .Values.serviceAccount.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+data:
+  storageconnector.json: |-
+    {{- range .Files.Lines "storageconnector.json" }}
+      {{- tpl . $ | nindent 4 }}
+    {{- end }}

@@ -1,7 +1,19 @@
 env:
   CONNECTOR_NAME: "ticks-azure-sink-storage-connector"
-  CONNECT_BOOTSTRAP_SERVERS: "kafka.dev.svc.cluster.local:9092"
   CONNECT_GROUP_ID: "azure.blob.storage.sink.ticks"
   CONNECT_CONFIG_STORAGE_TOPIC: "azure.blob.storage.sink.ticks.config.storage.topic"
   CONNECT_OFFSET_STORAGE_TOPIC: "azure.blob.storage.sink.ticks.offset.storage.topic"
   CONNECT_STATUS_STORAGE_TOPIC: "azure.blob.storage.sink.ticks.status.storage.topic"
+
+storageConnector:
+  topics: "app.logs.ticks.dedup"
+  azblob_account_name: "devradiusstorage"
+  azblob_account_key: ""
+  extraConfig: |-
+    "partition.duration.ms": 3600000,
+    "timestamp.extractor": "Record",
+    "path.format": "'notification'/YYYY/MM/dd",
+    "transforms": "RedactToken",
+    "transforms.RedactToken.Type": "org.apache.kafka.connect.transforms.MaskField$Value",
+    "transforms.RedactToken.fields": "user_token",
+    "transforms.RedactToken.replacement": "REDACTED",

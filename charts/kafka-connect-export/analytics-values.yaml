@@ -1,7 +1,15 @@
 env:
   CONNECTOR_NAME: "analytics-azure-sink-storage-connector"
-  CONNECT_BOOTSTRAP_SERVERS: "analytics-common-kafka.dev.svc.cluster.local:9092"
   CONNECT_GROUP_ID: "azure.blob.storage.sink.analytics"
   CONNECT_CONFIG_STORAGE_TOPIC: "azure.blob.storage.sink.analytics.config.storage.topic"
   CONNECT_OFFSET_STORAGE_TOPIC: "azure.blob.storage.sink.analytics.offset.storage.topic"
   CONNECT_STATUS_STORAGE_TOPIC: "azure.blob.storage.sink.analytics.status.storage.topic"
+
+storageConnector:
+  topics: "analytics_events"
+  azblob_account_name: "devradiusstorage"
+  azblob_account_key: ""
+  extraConfig: |-
+    "partition.duration.ms": 3600000,
+    "timestamp.extractor": "Record",
+    "path.format": "'analytics'/YYYY/MM/dd",
