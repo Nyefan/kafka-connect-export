@@ -1,4 +1,5 @@
 {
+    {{- with .Values.storageConnector.extraConfig -}}{{- . | nindent 4 -}},{{- end -}}
     "connector.class": "{{ required "storageConnector.connector_class must be set" .Values.storageConnector.connector_class }}",
     "topics": "{{ required "storageConnector.topics must be set" .Values.storageConnector.topics }}",
     "locale": "{{ required "storageConnector.locale must be set" .Values.storageConnector.locale }}",
@@ -15,6 +16,5 @@
     "format.class": "{{ required "storageConnector.format_class must be set" .Values.storageConnector.format_class }}",
     "az.compression.type": "{{ required "storageConnector.az_compression_type must be set" .Values.storageConnector.az_compression_type }}",
     "partitioner.class": "{{ required "storageConnector.partitioner_class must be set" .Values.storageConnector.partitioner_class }}",
-    "timezone": "{{ required "storageConnector.timezone must be set" .Values.storageConnector.timezone }}",
-    {{- .Values.storageConnector.extraConfig | nindent 4 -}}
+    "timezone": "{{ required "storageConnector.timezone must be set" .Values.storageConnector.timezone }}"
 }
