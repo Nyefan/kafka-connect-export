@@ -1,0 +1,4 @@
+storageConnector:
+  topics: "SET BY CALLER"
+  azblob_account_name: "SET BY CALLER"
+  azblob_account_key: "SET BY CALLER"
